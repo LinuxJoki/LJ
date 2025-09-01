@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bimbel Pintar — Pendampingan Belajar & Konsultasi Tugas</title>
+  <meta name="description" content="Bimbingan belajar ramah pelajar: pendampingan memahami materi, konsultasi tugas, dan latihan soal. Hubungi via WhatsApp.">
+  <style>
+    :root{
+      --bg:#0f1226;
+      --card:#171a36;
+      --muted:#a9b0d9;
+      --text:#f4f6ff;
+      --acc:#6c9cff;
+      --acc2:#00e0b8;
+      --danger:#ff6b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color:var(--text); background: radial-gradient(1200px 600px at 80% -10%, #1b2150 0%, transparent 60%) , var(--bg);
+      line-height:1.6;
+    }
+    a{color:var(--acc); text-decoration:none}
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(15,18,38,.9), rgba(15,18,38,.6));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px;
+    }
+    .brand{font-weight:800; letter-spacing:.3px}
+    .pill{
+      display:inline-flex; gap:10px; align-items:center; background:rgba(255,255,255,.05); padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.08)
+    }
+    .container{max-width:1100px; margin:auto; padding:26px 20px}
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center; padding:40px 0}
+    .tag{color:#b9c3ff; font-weight:700; letter-spacing:.6px; text-transform:uppercase; font-size:12px}
+    h1{font-size: clamp(28px, 4vw, 48px); line-height:1.08; margin:10px 0 14px}
+    .lead{color:var(--muted); font-size:clamp(15px, 2vw, 18px)}
+    .cta{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap}
+    .btn{
+      padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, #27306b, #212653); color:white; box-shadow: var(--shadow);
+      font-weight:700; cursor:pointer;
+    }
+    .btn.secondary{background:transparent}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow: var(--shadow);
+    }
+    .illus{
+      aspect-ratio: 4/3; border-radius:var(--radius); background:
+       radial-gradient(120px 120px at 15% 20%, rgba(108,156,255,.5), transparent 70%),
+       radial-gradient(180px 120px at 90% 30%, rgba(0,224,184,.4), transparent 75%),
+       linear-gradient(135deg, #1a1f45, #12142b);
+      position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.08)
+    }
+    .chip{
+      position:absolute; right:14px; top:14px; background:rgba(0,0,0,.35); padding:8px 10px; border-radius:10px; font-size:12px; border:1px solid rgba(255,255,255,.09)
+    }
+    .grid{display:grid; gap:16px}
+    .features{grid-template-columns: repeat(3,1fr); margin-top:26px}
+    .feature{padding:16px}
+    .feature h3{margin:8px 0 6px; font-size:18px}
+    .muted{color:var(--muted)}
+    .pricing{grid-template-columns: repeat(3,1fr); margin-top:18px}
+    .price-card{padding:18px; position:relative}
+    .badge{position:absolute; top:12px; right:12px; font-size:12px; padding:6px 10px; border-radius:999px; background:rgba(0,224,184,.12); color:#7df4dd; border:1px solid rgba(0,224,184,.25)}
+    .contact{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; margin-top:30px}
+    form{padding:18px}
+    label{display:block; font-weight:700; margin:8px 0 6px}
+    input, select, textarea{
+      width:100%; padding:12px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14);
+      background:#0f1230; color:var(--text); outline:none;
+    }
+    textarea{min-height:110px; resize:vertical}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .note{font-size:12px; color:var(--muted)}
+    footer{border-top:1px solid rgba(255,255,255,.08); margin-top:30px}
+    .foot{display:flex; align-items:center; justify-content:space-between; padding:16px 0; font-size:14px; color:var(--muted)}
+    .whatsapp-preview{
+      padding:18px; height:100%; display:flex; flex-direction:column; gap:8px
+    }
+    .bubble{
+      background:#1d8c6f1a; border:1px solid rgba(0,224,184,.25); color:#9fe9d8;
+      padding:12px; border-radius:12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px
+    }
+    .alert{color:#ffd2d2; background:#4f1d1d; border:1px solid #ff6b6b55; padding:10px 12px; border-radius:10px; display:none; margin-top:10px}
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .features, .pricing{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">JOKI TUGAS</div>
+      <nav class="pill">
+        <a href="#layanan">Layanan</a>
+        <span>•</span>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="tag">JOKI TUGAS LAPORAN DAN LAINYA BY LINUX JOKI😎</div>
+        <h1>JOKI TUGAS YANG UDAH PASTI CEPAT DAN BERES</h1>
+        <p class="lead">Tugas kalian menumpuk? Joki di Linux JOKI solusinya proses cepat konsep pas dan udh pasti di terima sama guru kalian😉</p>
+        <div class="cta">
+          <a class="btn" href="#kontak">Mulai Konsultasi</a>
+          <a class="btn secondary" href="#layanan">Lihat Layanan</a>
+        </div>
+      </div>
+      <div class="illus card">
+        <div class="chip">Online & Flexible</div>
+      </div>
+    </section>
+
+    <section id="layanan">
+      <h2>Layanan</h2>
+      <div class="grid features">
+        <div class="card feature">
+          <h3>Mentoring Konsep</h3>
+          <p class="muted">Penjelasan materi dan bagaimana tugas itu akan di buat.</p>
+        </div>
+        <div class="card feature">
+          <h3>Konsultasi Tugas</h3>
+          <p class="muted">Diskusi langkah penyelesaian, review jawaban, dan konsep projek tersebut.</p>
+        </div>
+        
+      </div>
+    </section>
+
+  
+      </div>
+    </section>
+
+    <section id="kontak" style="margin-top:28px">
+      <h2>Kontak & Booking</h2>
+      <div class="contact">
+        <form id="waForm" class="card" novalidate>
+          <div class="row">
+            <div>
+              <label for="nama">Nama</label>
+              <input id="nama" name="nama" placeholder="Nama lengkap" required />
+            </div>
+            <div>
+              <label for="whats">No. WhatsApp</label>
+              <input id="whats" name="whats" placeholder="62812xxxxxxx" inputmode="numeric" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="kelas">Kelas</label>
+              <select id="kelas" name="kelas" required>
+                <option value="">Pilih</option>
+                <option>SMP</option>
+                <option>MTS</option>
+                <option>SMA</option>
+                <option>SMK</option>
+                <option>MA</option>
+                <option>Kuliah</option>
+              </select>
+            </div>
+            <div>
+              <label for="mapel">Mapel</label>
+              <input id="mapel" name="mapel" placeholder="Matematika, Fisika, dll." required />
+            </div>
+          </div>
+
+          <label for="topik">Topik/konsep</label>
+          <textarea id="topik" name="topik" placeholder="Ceritakan singkat: materi, kesulitan, target"></textarea>
+
+          <div class="row">
+            <div>
+              <label for="jadwal">Preferensi Jadwal</label>
+              <input id="jadwal" name="jadwal" type="datetime-local" />
+            </div>
+            <div>
+              <label for="durasi">Durasi</label>
+              <select id="durasi" name="durasi">
+                <option>HARIAN</option>
+                <option>MINGGUAN</option>
+                <option>BULANAN</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="note">Dengan mengirim, kamu akan diarahkan ke WhatsApp dengan pesan terformat otomatis.</div>
+          <div class="alert" id="formAlert"></div>
+
+          <div class="cta">
+            <button class="btn" type="submit">Kirim ke WhatsApp</button>
+            <button class="btn secondary" type="reset">Reset</button>
+          </div>
+        </form>
+
+        <div class="card whatsapp-preview">
+          <h3>Preview Pesan</h3>
+          <div class="bubble" id="preview">Halo, saya ingin konsultasi bimbingan belajar…</div>
+          <div class="note">Periksa apakah informasinya sudah benar sebelum mengirim.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <span>© <span id="year"></span> JOKI TUGAS BY LINUX JOKI</span>
+      <span><a href="#layanan">Layanan</a> · <a href="#kontak">Kontak</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // === Nomor WhatsApp tujuan (sudah otomatis) ===
+    const WHATSAPP_NUMBER = "6285755065018";
+
+    const form = document.getElementById('waForm');
+    const preview = document.getElementById('preview');
+    const alertEl = document.getElementById('formAlert');
+    const yearEl = document.getElementById('year'); yearEl.textContent = new Date().getFullYear();
+
+    function buildMessage(data){
+      const lines = [
+        "*Booking Bimbingan Belajar*",
+        "",
+        `Nama: ${data.nama || "-"}`,
+        `No. WA: ${data.whats || "-"}`,
+        `Kelas: ${data.kelas || "-"}`,
+        `Mapel: ${data.mapel || "-"}`,
+        `Topik: ${data.topik || "-"}`,
+        `Preferensi Jadwal: ${data.jadwal || "-"}`,
+        `Durasi: ${data.durasi || "-"}`,
+        "",
+        "Mohon konfirmasi ketersediaan ya. Terima kasih!"
+      ];
+      return lines.join("\n");
+    }
+
+    function getFormData(){
+      return {
+        nama: document.getElementById('nama').value.trim(),
+        whats: document.getElementById('whats').value.trim(),
+        kelas: document.getElementById('kelas').value,
+        mapel: document.getElementById('mapel').value.trim(),
+        topik: document.getElementById('topik').value.trim(),
+        jadwal: document.getElementById('jadwal').value.replace('T',' '),
+        durasi: document.getElementById('durasi').value
+      };
+    }
+
+    function validate(data){
+      const errs = [];
+      if(!data.nama) errs.push("Nama wajib diisi.");
+      if(!data.kelas) errs.push("Kelas wajib dipilih.");
+      if(!data.mapel) errs.push("Mapel wajib diisi.");
+      if(!WHATSAPP_NUMBER) errs.push("Nomor WhatsApp tujuan belum dikonfigurasi di kode.");
+      return errs;
+    }
+
+    function updatePreview(){
+      const msg = buildMessage(getFormData());
+      preview.textContent = msg;
+    }
+
+    form.addEventListener('input', updatePreview);
+    updatePreview();
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alertEl.style.display = "none";
+      const data = getFormData();
+      const errs = validate(data);
+      if(errs.length){
+        alertEl.textContent = errs.join(" ");
+        alertEl.style.display = "block";
+        return;
+      }
+      const text = buildMessage(data);
+      const url = `https://wa.me/${encodeURIComponent(WHATSAPP_NUMBER)}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>
